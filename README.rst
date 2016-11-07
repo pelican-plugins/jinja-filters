@@ -7,7 +7,8 @@ a static site generator written in Python.
 
 ``Jinja Filters`` provides a selection of functions (called *filters*) for
 templates to use when building your website. They are packaged for Pelican, but
-may prove useful for other projects that make use of Jinja.
+may prove useful for other projects that make use of
+`Jinja2 <http://jinja.pocoo.org/>`_.
 
 
 Installation
@@ -39,45 +40,47 @@ Usage
 
 At present, the plugin includes the following filters:
 
-- ``datetime`` -- allows you to change to format displayed for a datetime
-	object. Optionally supply a `datetime format string
-	<https://docs.python.org/3.6/library/datetime.html#strftime-and-strptime-behavior>`_
-	to get a custom format
-- ``article_date`` -- a specialized version of ``datetime`` that returns
-	datetimes as wanted for article dates; speciefically *Friday, November 4,
-	2016*.
-- ``breaking_spaces`` -- replaceds non-breaking spaces (HTML code *&nbsp*) with
-	normal spaces.
+- ``datetime`` |--| allows you to change to format displayed for a datetime
+  object. Optionally supply a `datetime format string
+  <https://docs.python.org/3.6/library/datetime.html#strftime-and-strptime-behavior>`_
+  to get a custom format.
+- ``article_date`` |--| a specialized version of ``datetime`` that returns
+  datetimes as wanted for article dates; speciefically
+  *Friday, November 4, 2016*.
+- ``breaking_spaces`` |--| replaceds non-breaking spaces (HTML code *&nbsp*)
+  with normal spaces.
 
 For example, within your theme templates, you might have code like:
 
 .. code-block:: html+jinja2
 
-	<span class="published">
-	    Article Published {{ article.date | article_date }}
-	</span>
+    <span class="published">
+        Article Published {{ article.date | article_date }}
+    </span>
 
 gives::
-	
-	Article Published Friday, November 4, 2016
+    
+    Article Published Friday, November 4, 2016
 
 Or with your own dateformat:
 
 .. code-block:: html+jinja2
 
-	<span class="published">
-	    Article Published {{ article.date | datetime('%b %d, %Y') }}
-	</span>
+    <span class="published">
+        Article Published {{ article.date | datetime('%b %d, %Y') }}
+    </span>
 
 gives::
 
-	Article Published Nov 04, 2016
+    Article Published Nov 04, 2016
 
 To remove breaking spaces, you might have code like:
 
 .. code-block:: html+jinja2
 
-	<a href="{{ SITEURL }}/{{ article.category.url }}">
-		{{ article.category | breaking_spaces}}
-	</a>
+    <a href="{{ SITEURL }}/{{ article.category.url }}">
+        {{ article.category | breaking_spaces}}
+    </a>
 
+
+.. |--| unicode:: U+2013   .. en dash
