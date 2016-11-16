@@ -28,4 +28,4 @@ def add_all_filters(pelican):
 
 def register():
 	""" Plugin registration. """
-	signals.initialized.coonect(add_all_filters)
+	signals.initialized.connect(add_all_filters)

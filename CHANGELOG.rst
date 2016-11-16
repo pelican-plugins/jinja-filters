@@ -7,4 +7,4 @@ This Changelog is for ``minchin.pelican.jinja_filters``.
 - :support:`-` add release machinery
 - :support:`-` first release to PyPI
 - :support:`-` add 'setup.py', 'CHANGELOG.rst', 'README.rst'
-- :support: copy existing code from personal website
+- :feature:`-` copy existing code from personal website
