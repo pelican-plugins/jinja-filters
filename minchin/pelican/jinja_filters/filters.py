@@ -6,7 +6,8 @@ from titlecase import titlecase as _titlecase
 
 __all__ = ['datetime',
            'article_date',
-           'breaking_spaces']
+           'breaking_spaces',
+           'titlecase']
 
 
 def datetime(value, format='%Y/%m/%d %H:%M'):
