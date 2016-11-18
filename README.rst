@@ -15,7 +15,8 @@ Installation
 ============
 
 The easiest way to install ``Jinja Filters`` is through the use of pip. This
-will also install the required dependencies (currently none) automatically.
+will also install the required dependencies (currently ``pelican`` and
+``titlecase``) automatically.
 
 .. code-block:: sh
 
@@ -49,6 +50,7 @@ At present, the plugin includes the following filters:
   *Friday, November 4, 2016*.
 - ``breaking_spaces`` |--| replaceds non-breaking spaces (HTML code *&nbsp*)
   with normal spaces.
+- ``titlecase`` |--| Titlecases the supplied string
 
 For example, within your theme templates, you might have code like:
 

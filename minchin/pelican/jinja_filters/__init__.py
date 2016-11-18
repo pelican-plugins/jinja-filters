@@ -13,19 +13,20 @@ from pelican import signals
 
 from . import filters
 
-__version__ = "1.0.0+dev.0"
+__version__ = "1.0.0+dev.1"
 
 logger = logging.getLogger(__name__)
 
 
 def add_all_filters(pelican):
-	""" Adds all filters to Pelican. """
+    """ Adds all filters to Pelican. """
 
-	pelican.settings['JINJA_FILTERS']['datetime'] = filters.datetime
-	pelican.settings['JINJA_FILTERS']['article_date'] = filters.article_date
-	pelican.settings['JINJA_FILTERS']['breaking_spaces'] = filters.breaking_spaces
+    pelican.env.filters.update({'datetime': filters.datetime()})
+    pelican.env.filters.update({'article_date': filters.article_date()})
+    pelican.env.filters.update({'breaking_spaces': filters.breaking_spaces()})
+    pelican.env.filters.update({'titlecase': filters.titlecase()})
 
 
 def register():
-	""" Plugin registration. """
-	signals.initialized.connect(add_all_filters)
+    """ Plugin registration. """
+    signals.generator_init.connect(add_all_filters)
