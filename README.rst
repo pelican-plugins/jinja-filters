@@ -54,7 +54,7 @@ At present, the plugin includes the following filters:
 
 For example, within your theme templates, you might have code like:
 
-.. code-block:: html+jinja2
+.. code-block:: html+jinja
 
     <span class="published">
         Article Published {{ article.date | article_date }}
@@ -66,7 +66,7 @@ gives::
 
 Or with your own dateformat:
 
-.. code-block:: html+jinja2
+.. code-block:: html+jinja
 
     <span class="published">
         Article Published {{ article.date | datetime('%b %d, %Y') }}
@@ -76,12 +76,13 @@ gives::
 
     Article Published Nov 04, 2016
 
-To remove breaking spaces, you might have code like:
+FItlers can also be chained, or applied in sequence. For example to remove
+breaking spaces and then titlecase a catgory name, you might have code like:
 
-.. code-block:: html+jinja2
+.. code-block:: html+jinja
 
     <a href="{{ SITEURL }}/{{ article.category.url }}">
-        {{ article.category | breaking_spaces}}
+        {{ article.category | breaking_spaces | titlecase}}
     </a>
 
 
