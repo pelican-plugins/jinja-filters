@@ -76,7 +76,7 @@ gives::
 
     Article Published Nov 04, 2016
 
-FItlers can also be chained, or applied in sequence. For example to remove
+Fitlers can also be chained, or applied in sequence. For example to remove
 breaking spaces and then titlecase a catgory name, you might have code like:
 
 .. code-block:: html+jinja
