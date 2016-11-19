@@ -170,11 +170,11 @@ def check_local_install(version, ext, server="local"):
         shutil.rmtree(environment)  # remove directory if it exists
     subprocess.call(['python', '-m', 'venv', environment])
     if server == "local":
-        subprocess.call([environment + '\\Scripts\\pip.exe', 'install', str(the_file)], shell=True)
+        subprocess.call([environment + '\\Scripts\\pip.exe', 'install', str(the_file), '--no-cache'], shell=True)
     else:
         other_dependancies(server, environment)
         print("  **Install from server**")
-        subprocess.call([environment + '\\Scripts\\pip.exe', 'install', '-i', server_url(server), module_name() + "==" + str(version)], shell=True)
+        subprocess.call([environment + '\\Scripts\\pip.exe', 'install', '-i', server_url(server), module_name() + "==" + str(version), '--no-cache'], shell=True)
     print("  **Test version of install package**")
     test_version = subprocess.check_output([environment + '\\Scripts\\python.exe', '-c', "exec(\"\"\"import {0}\\nprint({0}.__version__)\\n\"\"\")".format(module_name())], shell=True)
     test_version = test_version.decode('ascii').strip()
@@ -187,7 +187,15 @@ def check_local_install(version, ext, server="local"):
 
 @task
 def make_release(cts):
-    make_release_version = '0.2.0'
+    '''Make and upload the release.
+
+    Changelog:
+     - v0.2.1 -- 2016-11-18 -- specify downloading of non-cached version of the
+                               package for multiple formats can be properly and
+                               individually tested.
+    '''
+
+    make_release_version = '0.2.1'
     colorama.init()
     text.title("Minchin 'Make Release' for Python v{}".format(make_release_version))
     print()
@@ -217,8 +225,8 @@ def make_release(cts):
     build_distribution()
 
     for server in [
-                    "local",
-                    "testpypi",
+                    # "local",
+                    # "testpypi",
                     "pypi",
                   ]:
         for file_format in ["tar.gz", "whl"]:
