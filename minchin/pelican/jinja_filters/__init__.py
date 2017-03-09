@@ -48,8 +48,7 @@ logger = logging.getLogger(__name__)
 
 
 def add_all_filters(pelican):
-    """ Adds all filters to Pelican. """
-
+    """Add (register) all filters to Pelican."""
     pelican.env.filters.update({'datetime': filters.datetime})
     pelican.env.filters.update({'article_date': filters.article_date})
     pelican.env.filters.update({'breaking_spaces': filters.breaking_spaces})
@@ -57,5 +56,5 @@ def add_all_filters(pelican):
 
 
 def register():
-    """ Plugin registration. """
+    """Plugin registration."""
     signals.generator_init.connect(add_all_filters)
