@@ -3,6 +3,7 @@ Jinja Filters Changelog
 
 This Changelog is for ``minchin.pelican.jinja_filters``.
 
+- :release:`1.0.1 <2017-03-08>`
 - :bug:`-` provide universal wheels
 - :release:`1.0.0 <2016-11-06>`
 - :support:`-` add release machinery
