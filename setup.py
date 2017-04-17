@@ -102,7 +102,7 @@ CLASSIFIERS = [
     # 'Programming Language :: Python :: 3 :: Only',
 
     'Environment :: Web Environment',
-    'Framework :: Pelican,'
+    'Framework :: Pelican',
     'Intended Audience :: Developers',
     'Natural Language :: English',
     'Operating System :: OS Independent',
