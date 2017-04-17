@@ -3,6 +3,7 @@ Jinja Filters Changelog
 
 This Changelog is for ``minchin.pelican.jinja_filters``.
 
+- :release:`1.0.4 <2017-04-17>`
 - :bug:`-` upgrade release machinery
 - :bug:`-` add Pelican trove classifier
 - :release:`1.0.1 <2017-03-08>`

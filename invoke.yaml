@@ -11,3 +11,6 @@ releaser:
   extra_packages:
     test:
       - pelican
+      - python-dateutil
+    pypi:
+      - python-dateutil
