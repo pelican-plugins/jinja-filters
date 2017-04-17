@@ -100,9 +100,10 @@ CLASSIFIERS = [
     'Programming Language :: Python :: 3.6',
     # 'Programming Language :: Python :: 3 :: Only',
 
-    'Natural Language :: English',
     'Environment :: Web Environment',
+    'Framework :: Pelican,'
     'Intended Audience :: Developers',
+    'Natural Language :: English',
     'Operating System :: OS Independent',
     'Topic :: Software Development :: Libraries :: Python Modules',
 ]
