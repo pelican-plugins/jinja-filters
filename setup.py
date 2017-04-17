@@ -50,6 +50,7 @@ EXTRA_REQUIRES = {
         'wheel',
         'setuptools >=18.0',
         'twine',
+        'minchin.releaser >= 0.4.2',
     ],
     # 'docs': [
     #     'sphinx >= 1.3, <1.4',  # theme isssue with 1.4
