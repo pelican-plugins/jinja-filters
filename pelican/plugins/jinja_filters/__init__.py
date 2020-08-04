@@ -7,19 +7,17 @@ templates to use when building your website. They are packaged for Pelican, but
 may prove useful for other projects that make use of Jinja.
 """
 
-from __future__ import absolute_import
-
 import logging
 
 from pelican import signals
 
-from . import filters
+from . import jinja_filters
 
 # METADATA
 
-__title__ = "minchin.pelican.jinja_filters"
-__description__ = "Jinja Filters for Pelican."
-__url__ = "https://github.com/MinchinWeb/minchin.pelican.jinja_filters"
+__title__ = "pelican.plugins.jinja_filters"
+__description__ = "Jinja Filters for Pelican"
+__url__ = "https://github.com/pelican-plugins/jinja-filters"
 __author__ = "William Minchin"
 __email__ = "w_minchin@hotmail.com"
 __license__ = "MIT License"
@@ -49,10 +47,10 @@ logger = logging.getLogger(__name__)
 
 def add_all_filters(pelican):
     """Add (register) all filters to Pelican."""
-    pelican.env.filters.update({'datetime': filters.datetime})
-    pelican.env.filters.update({'article_date': filters.article_date})
-    pelican.env.filters.update({'breaking_spaces': filters.breaking_spaces})
-    pelican.env.filters.update({'titlecase': filters.titlecase})
+    pelican.env.filters.update({"datetime": jinja_filters.datetime})
+    pelican.env.filters.update({"article_date": jinja_filters.article_date})
+    pelican.env.filters.update({"breaking_spaces": jinja_filters.breaking_spaces})
+    pelican.env.filters.update({"titlecase": jinja_filters.titlecase})
 
 
 def register():
