@@ -1,7 +1,8 @@
-Jinja Filters Changelog
-===============
+CHANGELOG
+=========
 
-This Changelog is for ``minchin.pelican.jinja_filters``.
+1.0.4 - 2017-04-17
+------------------
 
 - :release:`1.0.4 <2017-04-17>`
 - :bug:`-` upgrade release machinery
