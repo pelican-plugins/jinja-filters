@@ -43,3 +43,5 @@ env*/
 *.sublime-workspace
 
 content-2/
+
+poetry.lock
