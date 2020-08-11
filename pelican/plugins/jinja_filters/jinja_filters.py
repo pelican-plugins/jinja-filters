@@ -2,13 +2,10 @@
 
 from titlecase import titlecase as _titlecase
 
-__all__ = ['datetime',
-           'article_date',
-           'breaking_spaces',
-           'titlecase']
+__all__ = ["datetime", "article_date", "breaking_spaces", "titlecase"]
 
 
-def datetime(value, format_str='%Y/%m/%d %H:%M'):
+def datetime(value, format_str="%Y/%m/%d %H:%M"):
     """
     Convert a datetime to a different format.
 
@@ -36,7 +33,7 @@ def article_date(value):
     Returns:
         str: value, formatted nicely for displaying the date.
     """
-    return value.strftime('%A, %B %-d, %Y')
+    return value.strftime("%A, %B %-d, %Y")
 
 
 def breaking_spaces(value):
@@ -49,7 +46,7 @@ def breaking_spaces(value):
     Returns:
         str: the input string, now with regular spaces
     """
-    return value.replace('\u00A0', ' ')
+    return value.replace("\u00A0", " ")
 
 
 def titlecase(value):
