@@ -57,6 +57,7 @@ project-name = "Jinja Filters"
 git-username = "botpub"
 git-email = "botpub@autopub.rocks"
 changelog-file = "CHANGELOG.rst"
+version-strings = ["pelican/plugins/jinja_filters/__init__.py"]
 
 [tool.isort]
 # Maintain compatibility with Black
