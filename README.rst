@@ -22,7 +22,9 @@ will also install the required dependencies (currently ``pelican`` and
 
   pip install pelican-jinja-filters
 
-And that's it! The filters are now available for use in your templates.
+As ``Jinja Filters`` is a namespace plugin, it should automatically be loaded
+by Pelican. And that's it! The filters are now available for use in your
+templates.
 
 
 Usage
@@ -32,14 +34,14 @@ At present, the plugin includes the following filters:
 
 - ``datetime`` |--| allows you to change to format displayed for a datetime
   object. Optionally supply a `datetime format string
-  <https://docs.python.org/3.6/library/datetime.html#strftime-and-strptime-behavior>`_
+  <https://docs.python.org/3.8/library/datetime.html#strftime-and-strptime-behavior>`_
   to get a custom format.
 - ``article_date`` |--| a specialized version of ``datetime`` that returns
-  datetimes as wanted for article dates; speciefically
-  *Friday, November 4, 2016*.
-- ``breaking_spaces`` |--| replaceds non-breaking spaces (HTML code *&nbsp*)
+  datetimes as wanted for article dates; specifically
+  *Friday, November 4, 2020*.
+- ``breaking_spaces`` |--| replaces non-breaking spaces (HTML code *&nbsp*)
   with normal spaces.
-- ``titlecase`` |--| Titlecases the supplied string
+- ``titlecase`` |--| Titlecases the supplied string.
 
 For example, within your theme templates, you might have code like:
 
@@ -51,9 +53,9 @@ For example, within your theme templates, you might have code like:
 
 gives::
 
-    Article Published Friday, November 4, 2016
+    Article Published Friday, November 4, 2020
 
-Or with your own dateformat:
+Or with your own date format:
 
 .. code-block:: html+jinja
 
@@ -63,10 +65,10 @@ Or with your own dateformat:
 
 gives::
 
-    Article Published Nov 04, 2016
+    Article Published Nov 04, 2020
 
-Fitlers can also be chained, or applied in sequence. For example to remove
-breaking spaces and then titlecase a catgory name, you might have code like:
+Filters can also be chained, or applied in sequence. For example to remove
+breaking spaces and then titlecase a category name, you might have code like:
 
 .. code-block:: html+jinja
 

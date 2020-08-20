@@ -25,7 +25,7 @@ def article_date(value):
     """
     Convert a date to the format we want it displayed on the article template.
 
-    Format looks like --> Friday, November 4, 2016
+    Format looks like --> Friday, November 4, 2020
 
     Args:
         value (datetime.datetime): input date

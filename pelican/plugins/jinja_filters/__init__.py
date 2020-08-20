@@ -21,7 +21,7 @@ __url__ = "https://github.com/pelican-plugins/jinja-filters"
 __author__ = "William Minchin"
 __email__ = "w_minchin@hotmail.com"
 __license__ = "MIT License"
-__copyright__ = "Copyright (c) 2016 William Minchin"
+__copyright__ = "Copyright (c) 2016-20 William Minchin"
 
 """
 This project uses the Semantic Versioning scheme in conjunction with PEP 0440:

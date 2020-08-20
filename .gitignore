@@ -39,8 +39,12 @@ nosetests.xml
 
 # virtualenv
 env*/
+venv*/
+.env*/
+.venv*/
 
 *.sublime-workspace
+.vscode/*
 
 content-2/
 
