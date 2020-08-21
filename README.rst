@@ -2,6 +2,16 @@
 Jinja Filters
 =============
 
+|build| |pypi|
+
+.. |build| image:: https://img.shields.io/github/workflow/status/pelican-plugins/jinja-filters/build
+    :target: https://github.com/pelican-plugins/jinja-filters/actions
+    :alt: Build Status
+
+.. |pypi| image:: https://img.shields.io/pypi/v/pelican-jinja-filters.svg
+    :target: https://pypi.python.org/pypi/pelican-jinja-filters
+    :alt: PyPI Version
+
 ``Jinja Filters`` is a plugin for `Pelican <https://docs.getpelican.com/>`_,
 a static site generator written in Python.
 
