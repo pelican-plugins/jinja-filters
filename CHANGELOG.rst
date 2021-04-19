@@ -4,11 +4,11 @@ Jinja Filters Changelog
 2.0.0 - 2020-08-21
 ------------------
 
-- **feature** Initial release as namespace plugin. With Pelican 4.5, this
+- **feature** Initial release as namespace plugin. With Pelican 4.5,
   namespace plugins no longer need to be explicitly declared to be available to
   Pelican.
-- **support** minimum versoin of Pelican is now 4.5
-- **support** Move plugin to the `pelican-plugins` organization on GitHub. The
+- **support** minimum version of Pelican is now 4.5
+- **support** Move plugin to the `Pelican Plugins`_ organization on GitHub. The
   code for the project is now at `pelican-plugins/jinja-filters`_
 - **support** first release to PyPI under `pelican-jinja-filters`_
 
@@ -35,3 +35,4 @@ Jinja Filters Changelog
 .. _minchin.pelican.jinja_filters: https://pypi.org/project/minchin.pelican.jinja_filters/
 .. _pelican-plugins/jinja-filters: https://github.com/pelican-plugins/jinja-filters
 .. _pelican-jinja-filters: https://pypi.org/project/pelican-jinja-filters/
+.. _Pelican Plugins: https://github.com/pelican-plugins
