@@ -22,7 +22,8 @@ SYSTEM_PYTHON = which("python") if which("python") else None
 @task
 def tests(c):
     """Run the test suite"""
-    c.run(f"{VENV_BIN}/pytest", pty=True)
+    PTY = True if os.name != "nt" else False
+    c.run(f"{VENV_BIN}/pytest", pty=PTY)
 
 
 @task
