@@ -8,7 +8,7 @@ PKG_NAME = "jinja_filters"
 PKG_PATH = Path(f"pelican/plugins/{PKG_NAME}")
 BIN_DIR = "bin" if os.name != "nt" else "Scripts"
 ACTIVE_VENV = os.environ.get("VIRTUAL_ENV", None)
-VENV_HOME = Path(os.environ.get("WORKON_HOME", "~/virtualenvs"))
+VENV_HOME = Path(os.environ.get("WORKON_HOME", "~/virtualenvs")).expanduser()
 VENV_PATH = Path(ACTIVE_VENV) if ACTIVE_VENV else (VENV_HOME / PKG_NAME)
 VENV = str(VENV_PATH.expanduser())
 VENV_BIN = Path(VENV) / Path(BIN_DIR)
@@ -16,6 +16,7 @@ VENV_BIN = Path(VENV) / Path(BIN_DIR)
 TOOLS = ["poetry", "pre-commit"]
 POETRY = which("poetry") if which("poetry") else (VENV_BIN / "poetry")
 PRECOMMIT = which("pre-commit") if which("pre-commit") else (VENV_BIN / "pre-commit")
+SYSTEM_PYTHON = which("python") if which("python") else None
 
 
 @task
@@ -73,6 +74,15 @@ def precommit(c):
 
 @task
 def setup(c):
+    if ACTIVE_VENV is None and not VENV_PATH.exists():
+        if SYSTEM_PYTHON:
+            print("Creating virutal environment at {VENV}")
+            c.run(f"{SYSTEM_PYTHON} -m venv {VENV}")
+        else:
+            print(
+                "Could not determine system Python path. Create and activate a "
+                "virtual environment and run again."
+            )
     c.run(f"{VENV_BIN}/pip install -U pip")
     tools(c)
     c.run(f"{POETRY} install")
