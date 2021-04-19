@@ -16,7 +16,7 @@ VENV_BIN = Path(VENV) / Path(BIN_DIR)
 TOOLS = ["poetry", "pre-commit"]
 POETRY = which("poetry") if which("poetry") else (VENV_BIN / "poetry")
 PRECOMMIT = which("pre-commit") if which("pre-commit") else (VENV_BIN / "pre-commit")
-SYSTEM_PYTHON = which("python") if which("python") else None
+DEFAULT_PYTHON = which("python") if which("python") else None
 
 
 @task
@@ -64,27 +64,31 @@ def tools(c):
     """Install tools in the virtual environment if not already on PATH"""
     for tool in TOOLS:
         if not which(tool):
+            print(f"** Installing {tool} into virutal environment")
             c.run(f"{VENV_BIN}/pip install {tool}")
 
 
 @task
 def precommit(c):
     """Install pre-commit hooks to .git/hooks/pre-commit"""
+    # print("** Installing pre-commit hooks")
     c.run(f"{PRECOMMIT} install")
 
 
 @task
 def setup(c):
     if ACTIVE_VENV is None and not VENV_PATH.exists():
-        if SYSTEM_PYTHON:
-            print("Creating virutal environment at {VENV}")
-            c.run(f"{SYSTEM_PYTHON} -m venv {VENV}")
+        if DEFAULT_PYTHON:
+            print(f"** Creating virtual environment at {VENV}")
+            c.run(f"{DEFAULT_PYTHON} -m venv {VENV}")
         else:
             print(
-                "Could not determine system Python path. Create and activate a "
+                "Could not determine the default Python. Create and activate a "
                 "virtual environment and run again."
             )
+    print("** Upgrading virtual environment's pip")
     c.run(f"{VENV_BIN}/python -m pip install -U pip")
     tools(c)
+    print(f"** Installing {PKG_NAME} via poetry")
     c.run(f"{POETRY} install")
     precommit(c)
