@@ -83,7 +83,7 @@ def setup(c):
                 "Could not determine system Python path. Create and activate a "
                 "virtual environment and run again."
             )
-    c.run(f"{VENV_BIN}/pip install -U pip")
+    c.run(f"{VENV_BIN}/python -m pip install -U pip")
     tools(c)
     c.run(f"{POETRY} install")
     precommit(c)
