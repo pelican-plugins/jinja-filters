@@ -7,17 +7,18 @@ from invoke import task
 
 PKG_NAME = "jinja_filters"
 PKG_PATH = Path(f"pelican/plugins/{PKG_NAME}")
+
 BIN_DIR = "bin" if os.name != "nt" else "Scripts"
 ACTIVE_VENV = os.environ.get("VIRTUAL_ENV", None)
 VENV_HOME = Path(os.environ.get("WORKON_HOME", "~/virtualenvs")).expanduser()
 VENV_PATH = Path(ACTIVE_VENV) if ACTIVE_VENV else (VENV_HOME / PKG_NAME)
 VENV = str(VENV_PATH.expanduser())
 VENV_BIN = Path(VENV) / Path(BIN_DIR)
-
-TOOLS = ["poetry", "pre-commit"]
 POETRY = which("poetry") if which("poetry") else (VENV_BIN / "poetry")
 PRECOMMIT = which("pre-commit") if which("pre-commit") else f"{POETRY} run pre-commit"
 DEFAULT_PYTHON = which("python") if which("python") else None
+
+TOOLS = ["poetry", "pre-commit"]
 
 
 @task
@@ -65,8 +66,12 @@ def tools(c):
     """Install tools in the virtual environment if not already on PATH"""
     for tool in TOOLS:
         if not which(tool):
-            print(f"** Installing {tool} into virtual environment")
-            c.run(f"{POETRY} run pip install {tool}")
+            if ACTIVE_VENV:
+                print(f"** Installing {tool} into virtual environment")
+                c.run(f"{VENV_BIN}/pip install {tool}")
+            else:
+                print(f"** Installing {tool} with poetry")
+                c.run(f"{POETRY} run pip install {tool}")
 
 
 @task
@@ -80,8 +85,8 @@ def precommit(c):
 def setup(c):
     """Run this to get your development environment set up"""
     if which("poetry") or ACTIVE_VENV:
-        c.run(f"{POETRY} run pip install -U pip")
         tools(c)
+        c.run(f"{POETRY} run pip install -U pip")
         c.run(f"{POETRY} install")
         precommit(c)
     else:
