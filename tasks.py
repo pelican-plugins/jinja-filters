@@ -86,7 +86,7 @@ def setup(c):
     """Run this to get your development environment set up"""
     if which("poetry") or ACTIVE_VENV:
         tools(c)
-        c.run(f"{POETRY} run pip install -U pip")
+        c.run(f"{POETRY} run python -m pip install pip --upgrade")
         c.run(f"{POETRY} install")
         precommit(c)
     else:
