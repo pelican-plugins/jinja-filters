@@ -1,6 +1,7 @@
 import os
 from pathlib import Path
 from shutil import which
+import sys
 
 from invoke import task
 
@@ -15,7 +16,7 @@ VENV_BIN = Path(VENV) / Path(BIN_DIR)
 
 TOOLS = ["poetry", "pre-commit"]
 POETRY = which("poetry") if which("poetry") else (VENV_BIN / "poetry")
-PRECOMMIT = which("pre-commit") if which("pre-commit") else (VENV_BIN / "pre-commit")
+PRECOMMIT = which("pre-commit") if which("pre-commit") else f"{POETRY} run pre-commit"
 DEFAULT_PYTHON = which("python") if which("python") else None
 
 
@@ -23,7 +24,7 @@ DEFAULT_PYTHON = which("python") if which("python") else None
 def tests(c):
     """Run the test suite"""
     PTY = True if os.name != "nt" else False
-    c.run(f"{VENV_BIN}/pytest", pty=PTY)
+    c.run(f"{POETRY} run pytest", pty=PTY)
 
 
 @task
@@ -34,7 +35,7 @@ def black(c, check=False, diff=False):
         check_flag = "--check"
     if diff:
         diff_flag = "--diff"
-    c.run(f"{VENV_BIN}/black {check_flag} {diff_flag} {PKG_PATH} tasks.py")
+    c.run(f"{POETRY} run black {check_flag} {diff_flag} {PKG_PATH} tasks.py")
 
 
 @task
@@ -44,12 +45,12 @@ def isort(c, check=False, diff=False):
         check_flag = "-c"
     if diff:
         diff_flag = "--diff"
-    c.run(f"{VENV_BIN}/isort {check_flag} {diff_flag} .")
+    c.run(f"{POETRY} run isort {check_flag} {diff_flag} .")
 
 
 @task
 def flake8(c):
-    c.run(f"{VENV_BIN}/flake8 {PKG_PATH} tasks.py")
+    c.run(f"{POETRY} run flake8 {PKG_PATH} tasks.py")
 
 
 @task
@@ -64,31 +65,33 @@ def tools(c):
     """Install tools in the virtual environment if not already on PATH"""
     for tool in TOOLS:
         if not which(tool):
-            print(f"** Installing {tool} into virutal environment")
-            c.run(f"{VENV_BIN}/pip install {tool}")
+            print(f"** Installing {tool} into virtual environment")
+            c.run(f"{POETRY} run pip install {tool}")
 
 
 @task
 def precommit(c):
     """Install pre-commit hooks to .git/hooks/pre-commit"""
-    # print("** Installing pre-commit hooks")
+    print("** Installing pre-commit hooks")
     c.run(f"{PRECOMMIT} install")
 
 
 @task
 def setup(c):
-    if ACTIVE_VENV is None and not VENV_PATH.exists():
-        if DEFAULT_PYTHON:
-            print(f"** Creating virtual environment at {VENV}")
-            c.run(f"{DEFAULT_PYTHON} -m venv {VENV}")
-        else:
-            print(
-                "Could not determine the default Python. Create and activate a "
-                "virtual environment and run again."
-            )
-    print("** Upgrading virtual environment's pip")
-    c.run(f"{VENV_BIN}/python -m pip install -U pip")
-    tools(c)
-    print(f"** Installing {PKG_NAME} via poetry")
-    c.run(f"{POETRY} install")
-    precommit(c)
+    """Run this to get your development environment set up"""
+    if which("poetry") or ACTIVE_VENV:
+        c.run(f"{POETRY} run pip install -U pip")
+        tools(c)
+        c.run(f"{POETRY} install")
+        precommit(c)
+    else:
+        sys.exit(
+            """Poetry is not installed, and there is no active virtual environment
+            available. You can either manually create and activate a virtual
+            environment, or you can install Poetry via:
+
+            curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
+
+            Once you have taken one of the above two steps, run `invoke setup` again.
+            """
+        )
