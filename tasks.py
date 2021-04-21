@@ -10,21 +10,23 @@ PKG_PATH = Path(f"pelican/plugins/{PKG_NAME}")
 TOOLS = ["poetry", "pre-commit"]
 
 ACTIVE_VENV = os.environ.get("VIRTUAL_ENV", None)
-VENV_HOME = Path(os.environ.get("WORKON_HOME", "~/virtualenvs")).expanduser()
+VENV_HOME = Path(
+    os.environ.get("WORKON_HOME", "~/.local/share/virtualenvs")
+).expanduser()
 VENV_PATH = Path(ACTIVE_VENV) if ACTIVE_VENV else (VENV_HOME / PKG_NAME)
 VENV = str(VENV_PATH.expanduser())
 BIN_DIR = "bin" if os.name != "nt" else "Scripts"
 VENV_BIN = Path(VENV) / Path(BIN_DIR)
 POETRY = which("poetry") if which("poetry") else (VENV_BIN / "poetry")
-BIN_PREFIX = f"{VENV_BIN}/" if ACTIVE_VENV else f"{POETRY} run "
-PRECOMMIT = which("pre-commit") if which("pre-commit") else f"{BIN_PREFIX}pre-commit"
+CMD_PREFIX = f"{VENV_BIN}/" if ACTIVE_VENV else f"{POETRY} run "
+PRECOMMIT = which("pre-commit") if which("pre-commit") else f"{CMD_PREFIX}pre-commit"
 
 
 @task
 def tests(c):
     """Run the test suite."""
     PTY = True if os.name != "nt" else False
-    c.run(f"{BIN_PREFIX}pytest", pty=PTY)
+    c.run(f"{CMD_PREFIX}pytest", pty=PTY)
 
 
 @task
@@ -35,7 +37,7 @@ def black(c, check=False, diff=False):
         check_flag = "--check"
     if diff:
         diff_flag = "--diff"
-    c.run(f"{BIN_PREFIX}black {check_flag} {diff_flag} {PKG_PATH} tasks.py")
+    c.run(f"{CMD_PREFIX}black {check_flag} {diff_flag} {PKG_PATH} tasks.py")
 
 
 @task
@@ -46,13 +48,13 @@ def isort(c, check=False, diff=False):
         check_flag = "-c"
     if diff:
         diff_flag = "--diff"
-    c.run(f"{BIN_PREFIX}isort {check_flag} {diff_flag} .")
+    c.run(f"{CMD_PREFIX}isort {check_flag} {diff_flag} .")
 
 
 @task
 def flake8(c):
     """Run flake8 against the codebase."""
-    c.run(f"{BIN_PREFIX}flake8 {PKG_PATH} tasks.py")
+    c.run(f"{CMD_PREFIX}flake8 {PKG_PATH} tasks.py")
 
 
 @task
@@ -68,7 +70,7 @@ def tools(c):
     for tool in TOOLS:
         if not which(tool):
             print(f"** Installing {tool}.")
-            c.run(f"{BIN_PREFIX}pip install {tool}")
+            c.run(f"{CMD_PREFIX}pip install {tool}")
 
 
 @task
@@ -84,7 +86,7 @@ def setup(c):
     if which("poetry") or ACTIVE_VENV:
         tools(c)
         print("** Upgrade pip.")
-        c.run(f"{BIN_PREFIX}python -m pip install pip --upgrade")
+        c.run(f"{CMD_PREFIX}python -m pip install pip --upgrade")
         print(f"** Install {PKG_NAME} for development using poetry.")
         c.run(f"{POETRY} install")
         precommit(c)
