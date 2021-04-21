@@ -36,6 +36,8 @@ As ``Jinja Filters`` is a namespace plugin, it should automatically be loaded
 by Pelican. And that's it! The filters are now available for use in your
 templates.
 
+``Jinja Filters`` supports Pelican from version 4.5 on.
+
 
 Usage
 =====
@@ -87,11 +89,29 @@ breaking spaces and then titlecase a category name, you might have code like:
     </a>
 
 
+Contributing
+============
+
+Contributions are most welcome! See `Contributing`_ for more details.
+
+To set up a development environment:
+
+1. Fork the project on GitHub, and then clone your fork.
+2. Set up and activate a virtual environment.
+3. Have ``invoke`` on your system path or install it into your virtual
+   environment.
+4. Run ``invoke setup``.
+
+For more details, see `Contributing`_.
+
+
 License
 =======
 
-``Jinja Filters`` is under the MIT License. See attached ``License.txt`` for
+``Jinja Filters`` is under the MIT License. See attached `License.txt`_ for
 full license text.
 
 
 .. |--| unicode:: U+2013   .. en dash
+.. _Contributing: https://github.com/pelican-plugins/jinja-filters/blob/master/CONTRIBUTING.md
+.. _License.txt: https://github.com/pelican-plugins/jinja-filters/blob/master/LICENSE.txt
