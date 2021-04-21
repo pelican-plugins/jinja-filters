@@ -1,5 +1,7 @@
 """Various filters for Jinja."""
 
+from datetime import datetime as _datetime
+
 from titlecase import titlecase as _titlecase
 
 __all__ = [
@@ -45,6 +47,37 @@ def article_date(value):
 
     """
     return value.strftime("%A, %B %-d, %Y")
+
+
+def datetime_from_period(value):
+    """
+    Converts "period" into a datetime object.
+
+    On yearly/monthly/daily archive pages, a "period" object is supplied so you
+    know what timeperiod the particular archive page is for. This converts it
+    to a datetime.datetime object, so it can be further processed.
+
+    If a month is not provided (i.e. the period is for a yearly archive),
+    January is assumed. If a day is not provided (i.e. the period is for a
+    yearly or monthly archive), the 1st is assumed.
+
+    Args
+    ----
+        value (tuple): input period
+
+    Returns
+    -------
+        datetime.datetime: value converted
+
+    """
+    JANUARY = _datetime(2021, 1, 1).strftime("%B")
+    new_value = " ".join(
+        value[0],
+        value[1] if len(value) > 1 else JANUARY,
+        value[2] if len(value) > 2 else 1,
+    )
+    new_datetime = _datetime.strptime(*new_value, "%Y %B %-d")
+    return new_datetime
 
 
 def breaking_spaces(value):
