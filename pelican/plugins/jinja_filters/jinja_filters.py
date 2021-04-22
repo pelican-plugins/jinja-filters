@@ -73,19 +73,21 @@ def datetime_from_period(value):
         datetime.datetime: value converted
 
     """
-    if len(value) >= 2 and isinstance(value[2], int):
-        placeholder_month = _datetime(2021, value[2], 1).strftime("%B")
+    if len(value) >= 2 and isinstance(value[1], int):
+        placeholder_month = _datetime(2021, value[1], 1).strftime("%B")
     elif len(value) == 1:
         placeholder_month = _datetime(2021, 1, 1).strftime("%B")
     else:
-        placeholder_month = value[2]
+        placeholder_month = value[1]
 
     new_value = " ".join(
-        value[0],
-        placeholder_month,
-        value[2] if len(value) >= 3 else 1,
+        (
+            str(value[0]),
+            placeholder_month,
+            str(value[2]) if len(value) >= 3 else "1",
+        )
     )
-    new_datetime = _datetime.strptime(*new_value, "%Y %B %-d")
+    new_datetime = _datetime.strptime(new_value, "%Y %B %d")
     return new_datetime
 
 

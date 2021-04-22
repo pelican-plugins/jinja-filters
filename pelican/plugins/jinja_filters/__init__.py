@@ -21,7 +21,7 @@ __url__ = "https://github.com/pelican-plugins/jinja-filters"
 __author__ = "William Minchin"
 __email__ = "w_minchin@hotmail.com"
 __license__ = "MIT License"
-__copyright__ = "Copyright (c) 2016-20 William Minchin"
+__copyright__ = "Copyright (c) 2016-21 William Minchin"
 
 """
 This project uses the Semantic Versioning scheme in conjunction with PEP 0440:
@@ -51,6 +51,10 @@ def add_all_filters(pelican):
     pelican.env.filters.update({"article_date": jinja_filters.article_date})
     pelican.env.filters.update({"breaking_spaces": jinja_filters.breaking_spaces})
     pelican.env.filters.update({"titlecase": jinja_filters.titlecase})
+    pelican.env.filters.update(
+        {"datetime_from_period": jinja_filters.datetime_from_period}
+    )
+    pelican.env.filters.update({"merge_date_url": jinja_filters.merge_date_url})
 
 
 def register():

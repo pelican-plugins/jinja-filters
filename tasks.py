@@ -37,7 +37,8 @@ def black(c, check=False, diff=False):
         check_flag = "--check"
     if diff:
         diff_flag = "--diff"
-    c.run(f"{CMD_PREFIX}black {check_flag} {diff_flag} {PKG_PATH} tasks.py")
+
+    c.run(f"{CMD_PREFIX}black {check_flag} {diff_flag} {PKG_PATH} tasks.py test")
 
 
 @task
