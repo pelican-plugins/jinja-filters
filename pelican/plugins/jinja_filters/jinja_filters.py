@@ -46,7 +46,7 @@ def article_date(value):
         str: value, formatted nicely for displaying the date.
 
     """
-    return value.strftime("%A, %B %-d, %Y")
+    return "{dt:%A}, {dt:%B} {dt.day}, {dt.year}".format(dt=value)
 
 
 def datetime_from_period(value):
@@ -81,7 +81,9 @@ def datetime_from_period(value):
         placeholder_month = value[2]
 
     new_value = " ".join(
-        value[0], placeholder_month, value[2] if len(value) >= 3 else 1,
+        value[0],
+        placeholder_month,
+        value[2] if len(value) >= 3 else 1,
     )
     new_datetime = _datetime.strptime(*new_value, "%Y %B %-d")
     return new_datetime
