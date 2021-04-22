@@ -32,9 +32,21 @@ will also install the required dependencies (currently ``pelican`` and
 
   pip install pelican-jinja-filters
 
-As ``Jinja Filters`` is a namespace plugin, it should automatically be loaded
-by Pelican. And that's it! The filters are now available for use in your
-templates.
+As ``Jinja Filters`` is a namespace plugin, assuming you are using Pelican 4.5
+(or newer) **and** *only* other namespace plugins, ``Jinja Filters`` will be
+automatically be loaded by Pelican. And that's it!
+
+If you are using an older version of Pelican, or non-namespace plugins, you may
+need to add ``Jinja Filters`` to your ``pelicanconf.py``:
+
+.. code-block:: python
+
+  PLUGINS = [
+      # others...
+      "pelican.plugins.jinja_filters",
+  ]
+
+The filters are now available for use in your templates.
 
 
 Usage
