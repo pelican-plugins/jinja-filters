@@ -55,6 +55,7 @@ isort = "^5.4"
 livereload = "^2.6"
 markdown = "^3.2"
 Werkzeug = "^1.0"
+pytest = "^6.0"
 
 [tool.poetry.extras]
 markdown = ["markdown"]
