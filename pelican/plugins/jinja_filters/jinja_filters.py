@@ -87,6 +87,24 @@ def datetime_from_period(value):
     return new_datetime
 
 
+def merge_date_url(value, url):
+    """
+    Given a Pelican setting URL that contains a placeholder for a date, and a
+    date, it will combine the two to return the resulting URL.
+
+    Args
+    ----
+        value (datetime.datetime): a date
+        url (string): a Pelican URL setting
+
+    Returns
+    -------
+        string: combined URL
+
+    """
+    return url.format(date=value)
+
+
 def breaking_spaces(value):
     """
     Convert non-breaking spaces to regular spaces.
