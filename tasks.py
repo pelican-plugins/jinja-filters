@@ -20,12 +20,13 @@ VENV_BIN = Path(VENV) / Path(BIN_DIR)
 POETRY = which("poetry") if which("poetry") else (VENV_BIN / "poetry")
 CMD_PREFIX = f"{VENV_BIN}/" if ACTIVE_VENV else f"{POETRY} run "
 PRECOMMIT = which("pre-commit") if which("pre-commit") else f"{CMD_PREFIX}pre-commit"
+PTY = True if os.name != "nt" else False
 
 
 @task
 def tests(c):
     """Run the test suite."""
-    c.run(f"{CMD_PREFIX}pytest", pty=True)
+    c.run(f"{CMD_PREFIX}pytest", pty=PTY)
 
 
 @task
