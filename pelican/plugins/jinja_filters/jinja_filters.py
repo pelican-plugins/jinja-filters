@@ -64,15 +64,20 @@ def datetime_from_period(value):
     You can also generate a tuple of (up to three) integers to get a datetime
     out, using the integer representation for the month (1=January, etc).
 
+    If passes a single integer, it is assumed to represent a year.
+
     Args
     ----
-        value (tuple): input period
+        value (tuple or int): input period
 
     Returns
     -------
         datetime.datetime: value converted
 
     """
+    if isinstance(value, int):
+        value = (value,)
+
     if len(value) >= 2 and isinstance(value[1], int):
         placeholder_month = _datetime(2021, value[1], 1).strftime("%B")
     elif len(value) == 1:

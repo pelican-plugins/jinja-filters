@@ -35,6 +35,11 @@ class Test_Datetime_From_Period(unittest.TestCase):
         expected_date = datetime(2021, 4, 3)
         assert jinja_filters.datetime_from_period(period) == expected_date
 
+    def test_bare_year_period(self):
+        period = 2021
+        expected_date = datetime(2021, 1, 1)
+        assert jinja_filters.datetime_from_period(period) == expected_date
+
 
 def main():
     unittest.main()
