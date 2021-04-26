@@ -41,13 +41,13 @@ classifiers = [
 "Bug Tracker" = "https://github.com/pelican-plugins/jinja-filters/issues"
 
 [tool.poetry.dependencies]
-python = "^3.6"
+python = "^3.6.2 || ^3.7"
 pelican = "^3 || ^4"
 markdown = {version = "^3.2", optional = true}
 titlecase = "^1.1.1 || ^2"
 
 [tool.poetry.dev-dependencies]
-black = {version = "^20.8b1", allow-prereleases = true}
+black = {version = "^21.4b0", allow-prereleases = true}
 flake8 = "^3.8"
 flake8-black = "^0.1.0"
 invoke = "^1.3"
