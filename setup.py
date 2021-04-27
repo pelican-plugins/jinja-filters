@@ -31,7 +31,7 @@ META_PATH = ['minchin', 'pelican', 'jinja_filters', '__init__.py']
 NAME         = find_meta(*META_PATH, meta_key='title').lower()
 VERSION      = find_meta(*META_PATH, meta_key='version')
 SHORT_DESC   = find_meta(*META_PATH, meta_key='description')
-LONG_DESC    = read('readme.rst')
+LONG_DESC    = read('README.rst')
 AUTHOR       = find_meta(*META_PATH, meta_key='author')
 AUTHOR_EMAIL = find_meta(*META_PATH, meta_key='email')
 URL          = find_meta(*META_PATH, meta_key='url')
@@ -41,7 +41,7 @@ PACKAGES     = setuptools.find_packages()
 
 INSTALL_REQUIRES = [
     'pelican',
-    'titlecase',
+    'pelican-jinja-filters >= 2.1.0',  # replacement package
 ]
 
 EXTRA_REQUIRES = {
@@ -85,9 +85,9 @@ CLASSIFIERS = [
     # 'Development Status :: 2 - Pre-Alpha',
     # 'Development Status :: 3 - Alpha',
     # 'Development Status :: 4 - Beta',
-    'Development Status :: 5 - Production/Stable',
+    # 'Development Status :: 5 - Production/Stable',
     # 'Development Status :: 6 - Mature',
-    # 'Development Status :: 7 - Inactive',
+    'Development Status :: 7 - Inactive',
 
     # 'Programming Language :: Python :: 2',
     # 'Programming Language :: Python :: 2.6',
@@ -99,6 +99,9 @@ CLASSIFIERS = [
     # 'Programming Language :: Python :: 3.4',
     'Programming Language :: Python :: 3.5',
     'Programming Language :: Python :: 3.6',
+    'Programming Language :: Python :: 3.7',
+    'Programming Language :: Python :: 3.8',
+    'Programming Language :: Python :: 3.9',
     # 'Programming Language :: Python :: 3 :: Only',
 
     'Environment :: Web Environment',

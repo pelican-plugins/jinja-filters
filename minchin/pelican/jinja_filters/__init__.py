@@ -12,8 +12,7 @@ from __future__ import absolute_import
 import logging
 
 from pelican import signals
-
-from . import filters
+from pelican.plugins.jinja_filters import jinja_filters
 
 # METADATA
 
@@ -23,7 +22,7 @@ __url__ = "https://github.com/MinchinWeb/minchin.pelican.jinja_filters"
 __author__ = "William Minchin"
 __email__ = "w_minchin@hotmail.com"
 __license__ = "MIT License"
-__copyright__ = "Copyright (c) 2016 William Minchin"
+__copyright__ = "Copyright (c) 2016-21 William Minchin"
 
 """
 This project uses the Semantic Versioning scheme in conjunction with PEP 0440:
@@ -39,20 +38,25 @@ internal code changes that do not affect the API.
 Version 0.x should be considered a development version with an unstable API,
 and backwards compatibility is not guaranteed for minor versions.
 """
-__version__ = "1.0.4"
+__version__ = "1.1.0-dev.3"
 
 
 # Package Implementation
 
 logger = logging.getLogger(__name__)
 
+logger.warn(
+    "This package name (`minchin.pelican.jinja_filters`) has been "
+    "deprecated. Upgrade to `pelican-jinja-filters` on PyPI."
+)
+
 
 def add_all_filters(pelican):
     """Add (register) all filters to Pelican."""
-    pelican.env.filters.update({'datetime': filters.datetime})
-    pelican.env.filters.update({'article_date': filters.article_date})
-    pelican.env.filters.update({'breaking_spaces': filters.breaking_spaces})
-    pelican.env.filters.update({'titlecase': filters.titlecase})
+    pelican.env.filters.update({"datetime": jinja_filters.datetime})
+    pelican.env.filters.update({"article_date": jinja_filters.article_date})
+    pelican.env.filters.update({"breaking_spaces": jinja_filters.breaking_spaces})
+    pelican.env.filters.update({"titlecase": jinja_filters.titlecase})
 
 
 def register():
