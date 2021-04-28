@@ -37,7 +37,8 @@ def black(c, check=False, diff=False):
         check_flag = "--check"
     if diff:
         diff_flag = "--diff"
-    c.run(f"{CMD_PREFIX}black {check_flag} {diff_flag} {PKG_PATH} tasks.py")
+
+    c.run(f"{CMD_PREFIX}black {check_flag} {diff_flag} {PKG_PATH} tasks.py test")
 
 
 @task
@@ -54,13 +55,13 @@ def isort(c, check=False, diff=False):
 @task
 def flake8(c):
     """Run flake8 against the codebase."""
-    c.run(f"{CMD_PREFIX}flake8 {PKG_PATH} tasks.py")
+    c.run(f"{CMD_PREFIX}flake8 {PKG_PATH} tasks.py test")
 
 
 @task
-def lint(c):
-    isort(c, check=True)
-    black(c, check=True)
+def lint(c, diff=False):
+    isort(c, check=True, diff=diff)
+    black(c, check=True, diff=diff)
     flake8(c)
 
 

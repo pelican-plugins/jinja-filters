@@ -11,6 +11,7 @@ Jinja Filters Changelog
 - **support** Move plugin to the `Pelican Plugins`_ organization on GitHub. The
   code for the project is now at `pelican-plugins/jinja-filters`_
 - **support** first release to PyPI under `pelican-jinja-filters`_
+- see `Pull Request #4`_.
 
 1.0.4 - 2017-04-17
 ------------------
@@ -36,3 +37,4 @@ Jinja Filters Changelog
 .. _pelican-plugins/jinja-filters: https://github.com/pelican-plugins/jinja-filters
 .. _pelican-jinja-filters: https://pypi.org/project/pelican-jinja-filters/
 .. _Pelican Plugins: https://github.com/pelican-plugins
+.. _Pull Request #4: https://github.com/pelican-plugins/jinja-filters/pull/4

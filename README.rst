@@ -63,9 +63,15 @@ At present, the plugin includes the following filters:
 - ``article_date`` |--| a specialized version of ``datetime`` that returns
   datetimes as wanted for article dates; specifically
   *Friday, November 4, 2020*.
-- ``breaking_spaces`` |--| replaces non-breaking spaces (HTML code *&nbsp*)
+- ``breaking_spaces`` |--| replaces non-breaking spaces (HTML code *&nbsp;*)
   with normal spaces.
 - ``titlecase`` |--| Titlecases the supplied string.
+- ``datetime_from_period`` |--| take the ``period`` provided on period archive
+  pages, and turn it into a proper datetime.datetime object (likely to feed to
+  another filter)
+- ``merge_date_url`` |--| given a datetime (on the left) and a supplied URL,
+  "apply" the date to it. Envisioned in particular for ``YEAR_ARCHIVE_URL``,
+  ``MONTH_ARCHIVE_URL``, and ``DAY_ARCHIVE_URL``.
 
 For example, within your theme templates, you might have code like:
 
@@ -96,9 +102,23 @@ breaking spaces and then titlecase a category name, you might have code like:
 
 .. code-block:: html+jinja
 
-    <a href="{{ SITEURL }}/{{ article.category.url }}">
-        {{ article.category | breaking_spaces | titlecase}}
+    <a href="{{ SITEURL -}} / {{- article.category.url }}">
+        {{ article.category | breaking_spaces | titlecase }}
     </a>
+
+On a Monthly Archive page, you might have the following to link "up" to the
+Yearly Archive page:
+
+.. code-block:: html+jinja
+
+    <a href="{{ SITEURL -}} /
+             {{- period | datetime_from_period | merge_date_url(YEAR_ARCHIVE_URL) }}">
+        {{ period | datetime_from_period | datetime('%Y') }}
+    </a>
+
+which might give::
+
+    <a href="https://blog.minchin.ca/posts/2017/>2017</a>
 
 
 Contributing
