@@ -12,5 +12,6 @@ releaser:
     test:
       - pelican
       - python-dateutil
+      - pelican-jinja-filters
     pypi:
       - python-dateutil

@@ -3,6 +3,7 @@ Jinja Filters Changelog
 
 This Changelog is for ``minchin.pelican.jinja_filters``.
 
+- :release:`1.1.0 <2021-04-29>`
 - :support:`7` point to new plugin location at ``pelican-jinja-filters`` on PyPI
 - :release:`1.0.4 <2017-04-17>`
 - :bug:`-` upgrade release machinery
