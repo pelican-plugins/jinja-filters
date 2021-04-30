@@ -39,6 +39,7 @@ classifiers = [
 [tool.poetry.urls]
 "Funding" = "https://donate.getpelican.com/"
 "Bug Tracker" = "https://github.com/pelican-plugins/jinja-filters/issues"
+"Changelog" = "https://github.com/pelican-plugins/jinja-filters/blob/master/CHANGELOG.rst"
 
 [tool.poetry.dependencies]
 python = "^3.6.2 || ^3.7"
