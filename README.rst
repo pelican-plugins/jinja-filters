@@ -48,7 +48,7 @@ need to add ``Jinja Filters`` to your ``pelicanconf.py``:
 
 The filters are now available for use in your templates.
 
-``Jinja Filters`` supports Pelican from version 4.5 on.
+``Jinja Filters`` supports Pelican from version 3 on.
 
 
 Usage
