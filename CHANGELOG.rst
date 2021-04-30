@@ -27,6 +27,14 @@ Jinja Filters Changelog
 - **support** first release to PyPI under `pelican-jinja-filters`_
 - see `Pull Request #4`_.
 
+1.1.0 - 2021-04-29
+------------------
+
+- **support** add warning message to point users to new plugin location at
+  ``pelican-jinja-filters`` on PyPI. See `Issue #7`_.
+
+.. _Issue #7: https://github.com/pelican-plugins/jinja-filters/issues/7
+
 1.0.4 - 2017-04-17
 ------------------
 
