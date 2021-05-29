@@ -49,7 +49,7 @@ def isort(c, check=False, diff=False):
         check_flag = "-c"
     if diff:
         diff_flag = "--diff"
-    c.run(f"{CMD_PREFIX}isort {check_flag} {diff_flag} .")
+    c.run(f"{CMD_PREFIX}isort {check_flag} {diff_flag} {PKG_PATH} tasks.py test")
 
 
 @task
