@@ -1,5 +1,6 @@
 """Various filters for Jinja."""
 
+import logging
 
 from titlecase import titlecase as _titlecase
 
@@ -11,6 +12,10 @@ __all__ = [
     "datetime",
     "titlecase",
 ]
+
+
+LOG_PREFIX = "[Jinja Filters]"
+logger = logging.getLogger(__name__)
 
 
 def datetime(value, format_str="%Y/%m/%d %H:%M"):
@@ -29,7 +34,17 @@ def datetime(value, format_str="%Y/%m/%d %H:%M"):
         str: value, after the format_str has been applied
 
     """
-    return value.strftime(format_str)
+    try:
+        return value.strftime(format_str)
+    except ValueError as e:
+        logger.error(
+            "%s ValueError. value: %s, type(value): %s, format_str: %s",
+            LOG_PREFIX,
+            value,
+            type(value),
+            format_str,
+        )
+        raise e
 
 
 def article_date(value):
@@ -47,7 +62,13 @@ def article_date(value):
         str: value, formatted nicely for displaying the date.
 
     """
-    return "{dt:%A}, {dt:%B} {dt.day}, {dt.year}".format(dt=value)
+    try:
+        return "{dt:%A}, {dt:%B} {dt.day}, {dt.year}".format(dt=value)
+    except ValueError as e:
+        logger.error(
+            "%s ValueError. value: %s, type(value): %s", LOG_PREFIX, value, type(value)
+        )
+        raise e
 
 
 def datetime_from_period(value):
