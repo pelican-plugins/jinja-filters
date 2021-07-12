@@ -133,7 +133,23 @@ def merge_date_url(value, url):
         string: combined URL
 
     """
-    return url.format(date=value)
+    try:
+        return url.format(date=value)
+    except ValueError:
+        # will throw a "ValueError" if the value is a datetime.datetime and the url
+        # contains a "-" (e.g. "{date:%-d}") (used in Pelican to strip the leading
+        # zero)
+        try:
+            return url.format(date=SafeDatetime(value.year, value.month, value.day))
+        except ValueError as e:
+            logger.error(
+                "%s ValueError. value: %s, type(value): %s, url: %s",
+                LOG_PREFIX,
+                value,
+                type(value),
+                url,
+            )
+            raise e
 
 
 def breaking_spaces(value):
