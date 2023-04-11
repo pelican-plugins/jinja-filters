@@ -7,7 +7,7 @@ license = "MIT"
 readme = "README.rst"
 keywords = ["jinja2", "templates", "pelican", "plugin"]
 repository = "https://github.com/pelican-plugins/jinja-filters"
-documentation = "https://github.com/pelican-plugins/jinja-filters/blob/master/README.rst"
+documentation = "https://github.com/pelican-plugins/jinja-filters/blob/main/README.rst"
 packages = [
     { include = "pelican" },
 ]
@@ -39,7 +39,7 @@ classifiers = [
 [tool.poetry.urls]
 "Funding" = "https://donate.getpelican.com/"
 "Bug Tracker" = "https://github.com/pelican-plugins/jinja-filters/issues"
-"Changelog" = "https://github.com/pelican-plugins/jinja-filters/blob/master/CHANGELOG.rst"
+"Changelog" = "https://github.com/pelican-plugins/jinja-filters/blob/main/CHANGELOG.rst"
 
 [tool.poetry.dependencies]
 python = ">=3.8.1,<4.0"
