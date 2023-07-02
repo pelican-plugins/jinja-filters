@@ -4,7 +4,7 @@ Jinja Filters
 
 |build| |pypi|
 
-.. |build| image:: https://img.shields.io/github/workflow/status/pelican-plugins/jinja-filters/build
+.. |build| image:: https://img.shields.io/github/actions/workflow/status/pelican-plugins/jinja-filters/main.yml?branch=main
     :target: https://github.com/pelican-plugins/jinja-filters/actions
     :alt: Build Status
 
