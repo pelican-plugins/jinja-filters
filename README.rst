@@ -145,5 +145,5 @@ full license text.
 
 
 .. |--| unicode:: U+2013   .. en dash
-.. _Contributing: https://github.com/pelican-plugins/jinja-filters/blob/master/CONTRIBUTING.md
-.. _License.txt: https://github.com/pelican-plugins/jinja-filters/blob/master/LICENSE.txt
+.. _Contributing: https://github.com/pelican-plugins/jinja-filters/blob/main/CONTRIBUTING.md
+.. _License.txt: https://github.com/pelican-plugins/jinja-filters/blob/main/LICENSE.txt
