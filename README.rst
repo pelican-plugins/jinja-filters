@@ -77,6 +77,9 @@ At present, the plugin includes the following filters:
 - ``merge_date_url`` |--| given a datetime (on the left) and a supplied URL,
   "apply" the date to it. Envisioned in particular for ``YEAR_ARCHIVE_URL``,
   ``MONTH_ARCHIVE_URL``, and ``DAY_ARCHIVE_URL``.
+- ``unwrap_links`` |--| given a piece of HTML code, it removes the links, keeping the existing text in place.
+- ``unwrap_tag`` |--| given a piece of HTML code, it can remove elements like the ``<b></b>`` bold tags, keeping the existing text in place.
+
 
 For example, within your theme templates, you might have code like:
 

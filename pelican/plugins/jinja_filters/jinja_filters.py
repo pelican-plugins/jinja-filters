@@ -5,12 +5,15 @@ import logging
 from titlecase import titlecase as _titlecase
 
 from pelican.utils import SafeDatetime
+from bs4 import BeautifulSoup
 
 __all__ = [
     "article_date",
     "breaking_spaces",
     "datetime",
     "titlecase",
+    "unwrap_links",
+    "unwrap_tag",
 ]
 
 
@@ -177,3 +180,44 @@ def titlecase(value):
 
     """
     return _titlecase(value)
+
+
+def unwrap_tag(html, tag_name):
+
+    """Unwrap all tags from the supplied html while keeping the child content.
+
+    ----
+        html (string containing HTML): source
+        tag_name (string): tag name to remove
+
+    Returns:
+    -------
+        str: html, with all matching tags unwrapped.
+
+    """
+    try:
+        soup = BeautifulSoup(html, "html.parser")
+        for a in soup.find_all(tag_name):
+            a.unwrap()
+        return str(soup)
+    except ValueError as e:
+        logger.error(
+            "%s ValueError. value: %s, type(value): %s", LOG_PREFIX, value, type(value)
+        )
+        raise e
+
+
+
+def unwrap_links(html):
+
+    """Remove all hyperlink tags (anchors) from the supplied html while keeping the link content.
+
+    ----
+        html (string containing HTML): source
+
+    Returns:
+    -------
+        str: html, with all anchor tags unwrapped.
+
+    """
+    return unwrap_tag(html, "a")

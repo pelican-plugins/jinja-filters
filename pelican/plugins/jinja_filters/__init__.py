@@ -53,6 +53,8 @@ def add_all_filters(pelican):
         {"datetime_from_period": jinja_filters.datetime_from_period}
     )
     pelican.env.filters.update({"merge_date_url": jinja_filters.merge_date_url})
+    pelican.env.filters.update({"unwrap_tag": jinja_filters.unwrap_tag})
+    pelican.env.filters.update({"unwrap_links": jinja_filters.unwrap_links})
 
 
 def register():

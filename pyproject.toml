@@ -27,6 +27,7 @@ requires-python = "~=3.9"
 dependencies = [
     "pelican>=4.5",
     "titlecase>=1.1.1",
+    "beautifulsoup4>=4.0.0",
 ]
 
 [project.urls]
